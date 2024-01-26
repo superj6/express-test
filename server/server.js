@@ -18,11 +18,12 @@ app.get('/', function(req, res){
 //serve pages html
 
 const clientHtmlPath = path.join(clientPath, 'html')
+const htmlViewPath = path.join(clientHtmlPath, 'views')
 
 app.use('/html/static/', express.static(path.join(clientHtmlPath, 'static')))
 
 app.get('/html/', function(req, res){
-  res.sendFile(path.join(clientHtmlPath, 'index.html')); 
+  res.sendFile(path.join(htmlViewPath, 'index.html'));
 });
 
 //serve pages with ejs
@@ -45,11 +46,11 @@ app.get('/ejs/test/', function(req, res){
 //serve pages with react router
 
 const clientReactPath = path.join(clientPath, 'react');
-const reactDist = path.join(clientReactPath, 'dist');
+const reactDistPath = path.join(clientReactPath, 'dist');
 
-app.use('/react/dist/', express.static(reactDist));
+app.use('/react/dist/', express.static(reactDistPath));
 app.use('/react/static/', express.static(path.join(clientReactPath, 'src', 'static')));
 
 app.get('/react/*', function(req, res){
-  res.sendFile(path.join(reactDist, 'index.html'));
+  res.sendFile(path.join(reactDistPath, 'index.html'));
 });
