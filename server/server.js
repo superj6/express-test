@@ -8,12 +8,17 @@ app.listen(port);
 console.log(`Server started at http://localhost:${port}`);
 
 const clientPath = path.resolve(__dirname, '..', 'client');
+const clientEjsPath = path.resolve(clientPath, 'ejs');
 
-app.use(express.static(path.join(clientPath, 'public')));
+app.use(express.static(path.join(clientEjsPath, 'public')));
 
-app.set('views', path.join(clientPath, 'views'));
+app.set('views', path.join(clientEjsPath, 'views'));
 app.set('view engine', 'ejs');
 
-app.get('/', function(req, res){
+app.get('/ejs/', function(req, res){
   res.render('index');
+});
+
+app.get('/ejs/test/', function(req, res){
+  res.render(path.join('test', 'index'));
 });
