@@ -8,9 +8,14 @@ app.listen(port);
 console.log(`Server started at http://localhost:${port}`);
 
 const clientPath = path.resolve(__dirname, '..', 'client');
+
+//serve pages raw
+
+//serve pages with ejs
+
 const clientEjsPath = path.resolve(clientPath, 'ejs');
 
-app.use(express.static(path.join(clientEjsPath, 'public')));
+app.use('/ejs/', express.static(path.join(clientEjsPath, 'public')));
 
 app.set('views', path.join(clientEjsPath, 'views'));
 app.set('view engine', 'ejs');
@@ -22,3 +27,7 @@ app.get('/ejs/', function(req, res){
 app.get('/ejs/test/', function(req, res){
   res.render(path.join('test', 'index'));
 });
+
+//serve pages with react router
+
+
