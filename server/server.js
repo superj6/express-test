@@ -9,7 +9,7 @@ console.log(`Server started at http://localhost:${port}`);
 
 const clientPath = path.resolve(__dirname, '..', 'client');
 
-//serve pages
+//serve pages text
 
 app.get('/', function(req, res){
   res.send('This is my express test page. Look at different rendered pages in /html, /ejs, and /react.');
@@ -19,7 +19,7 @@ app.get('/', function(req, res){
 
 const clientHtmlPath = path.join(clientPath, 'html')
 
-app.use('/html/static', express.static(path.join(clientHtmlPath, 'public')))
+app.use('/html/static/', express.static(path.join(clientHtmlPath, 'public')))
 
 app.get('/html/', function(req, res){
   res.sendFile(path.join(clientHtmlPath, 'index.html')); 
@@ -29,7 +29,7 @@ app.get('/html/', function(req, res){
 
 const clientEjsPath = path.join(clientPath, 'ejs');
 
-app.use('/ejs/static', express.static(path.join(clientEjsPath, 'public')));
+app.use('/ejs/static/', express.static(path.join(clientEjsPath, 'public')));
 
 app.set('views', path.join(clientEjsPath, 'views'));
 app.set('view engine', 'ejs');
@@ -44,4 +44,11 @@ app.get('/ejs/test/', function(req, res){
 
 //serve pages with react router
 
+const clientReactPath = path.join(clientPath, 'react');
+const reactDist = path.join(clientReactPath, 'dist');
 
+app.use('/react/dist/', express.static(reactDist));
+
+app.get('/react/*', function(req, res){
+  res.sendFile(path.join(reactDist, 'index.html'));
+});
