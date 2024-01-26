@@ -19,7 +19,7 @@ app.get('/', function(req, res){
 
 const clientHtmlPath = path.resolve(clientPath, 'html')
 
-app.use('/html/', express.static(path.join(clientHtmlPath, 'public')))
+app.use('/html/static', express.static(path.join(clientHtmlPath, 'public')))
 
 app.get('/html/', function(req, res){
   
@@ -29,7 +29,7 @@ app.get('/html/', function(req, res){
 
 const clientEjsPath = path.resolve(clientPath, 'ejs');
 
-app.use('/ejs/', express.static(path.join(clientEjsPath, 'public')));
+app.use('/ejs/static', express.static(path.join(clientEjsPath, 'public')));
 
 app.set('views', path.join(clientEjsPath, 'views'));
 app.set('view engine', 'ejs');
