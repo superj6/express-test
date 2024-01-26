@@ -19,7 +19,7 @@ app.get('/', function(req, res){
 
 const clientHtmlPath = path.join(clientPath, 'html')
 
-app.use('/html/static/', express.static(path.join(clientHtmlPath, 'public')))
+app.use('/html/static/', express.static(path.join(clientHtmlPath, 'static')))
 
 app.get('/html/', function(req, res){
   res.sendFile(path.join(clientHtmlPath, 'index.html')); 
@@ -29,7 +29,7 @@ app.get('/html/', function(req, res){
 
 const clientEjsPath = path.join(clientPath, 'ejs');
 
-app.use('/ejs/static/', express.static(path.join(clientEjsPath, 'public')));
+app.use('/ejs/static/', express.static(path.join(clientEjsPath, 'static')));
 
 app.set('views', path.join(clientEjsPath, 'views'));
 app.set('view engine', 'ejs');
@@ -48,6 +48,7 @@ const clientReactPath = path.join(clientPath, 'react');
 const reactDist = path.join(clientReactPath, 'dist');
 
 app.use('/react/dist/', express.static(reactDist));
+app.use('/react/static/', express.static(path.join(clientReactPath, 'src', 'static')));
 
 app.get('/react/*', function(req, res){
   res.sendFile(path.join(reactDist, 'index.html'));
