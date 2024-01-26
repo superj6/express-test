@@ -9,7 +9,21 @@ console.log(`Server started at http://localhost:${port}`);
 
 const clientPath = path.resolve(__dirname, '..', 'client');
 
-//serve pages raw
+//serve pages
+
+app.get('/', function(req, res){
+  res.send('This is my express test page. Look at different rendered pages in /html, /ejs, and /react.');
+});
+
+//serve pages html
+
+const clientHtmlPath = path.resolve(clientPath, 'html')
+
+app.use('/html/', express.static(path.join(clientHtmlPath, 'public')))
+
+app.get('/html/', function(req, res){
+  
+});
 
 //serve pages with ejs
 
