@@ -17,17 +17,17 @@ app.get('/', function(req, res){
 
 //serve pages html
 
-const clientHtmlPath = path.resolve(clientPath, 'html')
+const clientHtmlPath = path.join(clientPath, 'html')
 
 app.use('/html/static', express.static(path.join(clientHtmlPath, 'public')))
 
 app.get('/html/', function(req, res){
-  
+  res.sendFile(path.join(clientHtmlPath, 'index.html')); 
 });
 
 //serve pages with ejs
 
-const clientEjsPath = path.resolve(clientPath, 'ejs');
+const clientEjsPath = path.join(clientPath, 'ejs');
 
 app.use('/ejs/static', express.static(path.join(clientEjsPath, 'public')));
 
@@ -39,7 +39,7 @@ app.get('/ejs/', function(req, res){
 });
 
 app.get('/ejs/test/', function(req, res){
-  res.render(path.join('test', 'index'));
+  res.render('test/index');
 });
 
 //serve pages with react router
