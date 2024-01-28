@@ -26,6 +26,10 @@ app.get('/html/', function(req, res){
   res.sendFile(path.join(htmlViewPath, 'index.html'));
 });
 
+app.get('/html/template-home-1', function(req, res){
+  res.sendFile(path.join(htmlViewPath, 'template-home-1.html'));
+});
+
 //serve pages with ejs
 
 const clientEjsPath = path.join(clientPath, 'ejs');
