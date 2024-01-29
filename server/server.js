@@ -17,10 +17,10 @@ app.get('/', function(req, res){
 
 //serve pages html
 
-const clientHtmlPath = path.join(clientPath, 'html')
-const htmlViewPath = path.join(clientHtmlPath, 'views')
+const clientHtmlPath = path.join(clientPath, 'html');
+const htmlViewPath = path.join(clientHtmlPath, 'views');
 
-app.use('/html/static/', express.static(path.join(clientHtmlPath, 'static')))
+app.use('/html/static/', express.static(path.join(clientHtmlPath, 'static')));
 
 app.get('/html/', function(req, res){
   res.sendFile(path.join(htmlViewPath, 'index.html'));
