@@ -63,14 +63,14 @@
   font-size: 12px;
 }
 
-.top-nav__item--has-sub-nav:hover > .sub-nav{
+.top-nav__item:hover > .sub-nav{
   top: 100%;
   left: 0;
   display: flex;
   flex-direction: column;
 }
 
-.sub-nav__item--has-sub-nav:hover > .sub-nav{
+.sub-nav__item:hover > .sub-nav{
   top: 0;
   left: 100%;
   display: flex;
