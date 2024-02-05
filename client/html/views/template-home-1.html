@@ -6,25 +6,26 @@
 
   <title>My Template Homepage uwu</title>
 </head>
-<body class="home">
+<body class="home-page">
   <header class="top-bar">
+    <h1 class="top-bar__title">Jason</h1>
     <nav class="top-nav">
       <ul class="top-nav__list">
-	<li class="top-nav__item  top-nav__item--has-dropnav">
+	<li class="top-nav__item  top-nav__item--has-sub-nav">
 	  <a class="top-nav__link" href="#cover">Home</a>
-	  <ul class="sub-nav sub-nav--down">
+	  <ul class="sub-nav">
 	    <li class="sub-nav__item">
-	      <a class="sub-nav__link" href="#intro">Intro</a>
+	      <a class="sub-nav__link" href="#home-intro">Intro</a>
 	    </li>
             <li class="sub-nav__item">
-	      <a class="sub-nav__link" href="#interests">Interests</a>
+	      <a class="sub-nav__link" href="#home-interests">Interests</a>
 	    </li>
 	    <li class="sub-nav__item">
-	      <a class = "subnav__link" href="#family">Family</a>
+	      <a class = "sub-nav__link" href="#home-family">Family</a>
 	    </li>
 	    <li class="sub-nav__item sub-nav__item--has-sub-nav">
-	      <a clas="sub-nav__link" href="#ideas">Ideas</a>
-	      <ul class="sub-nav sub-nav--side">
+	      <a class="sub-nav__link" href="#home-ideas">Ideas</a>
+	      <ul class="sub-nav">
 		<li class="sub-nav__item">
 		  <a class="sub-nav__link" href="#ideas__aiideaarb">AI Idea Arbitrage</a>
 		</li>
@@ -37,7 +38,7 @@
 	      </ul>
 	    </li>
 	    <li class="sub-nav__item sub-nav__item--has-sub-nav">
-	      <a href="#philosophies">Philosophies</a>
+	      <a class="sub-nav__link" href="#home-philosophies">Philosophies</a>
 	      <ul class="sub-nav sub-nav--side">
 		<li class="sub-nav__item">
 		  <a class="sub-nav__link" href="#philosophies__maxexp">Maximize Experiences</a>
@@ -48,38 +49,40 @@
 	      </ul>
 	    </li>
 	    <li class="sub-nav__item">
-	      <a class="sub-nav__link" href="#contact">Contact</a>
+	      <a class="sub-nav__link" href="#home-contact">Contact</a>
 	    </li>
 	  </ul>
 	</li>
 	<li class="top-nav__item">
 	  <a class="top-nav__link" href="#">Page 1</a>
 	</li>
-	<li clas="top-nav__item">
+	<li class="top-nav__item">
 	  <a class="top-nav__link" href="#">Page 2</a>
 	</li>
       </ul>
-    <nav>
-  <header>
-  <main>
-    <section id="cover">
+    </nav>
+  </header>
+  <main class="home-page__main">
+    <section id="home-cover" class="cover-section">
 
     </section>
-    <section id="intro">
+    <section id="home-intro" class="intro-section">
     
     </section>
-    <section id="interests">
-    </section>
-    <section id="family">
+    <section id="home-interests" class="interests-section">
     
     </section>
-    <section id="ideas">
+    <section id="home-family" class="family-section">
+    
+    </section>
+    <section id="home-ideas" class="ideas-section">
 
     </section>
-    <section id="philosophies">
+    <section id="home-philosophies" class="philophies-section">
+    
     </section>
   </main>
-  <footer class="contact">
+  <footer id="home-contact" class="footer-bar">
   </footer>
 </body>
 </html>
