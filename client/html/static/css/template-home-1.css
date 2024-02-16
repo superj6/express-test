@@ -8,6 +8,29 @@
   background-color: black; 
 }
 
+.intersect-flyin{
+  position: relative;
+  opacity: 0;
+  transition: 1s all ease;
+}
+
+.intersect-flyin--from-left{
+  transform: translateX(-5rem);
+}
+
+.intersect-flyin--from-right{
+  transform: translateX(5rem);
+}
+
+.intersect-flyin--from-bottom{
+  transform: translateY(5rem);
+}
+
+.intersect-flyin--active{
+  transform: translate(0);
+  opacity: 1;
+}
+
 .top-bar{
   background-color: rgba(0, 0, 0, 0.5);
   backdrop-filter: blur(8px);
