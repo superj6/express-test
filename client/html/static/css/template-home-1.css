@@ -1,11 +1,15 @@
+.scroll-dark{
+  scrollbar-color: dark;
+}
+
 .home-page{
   margin: 0;
   padding: 0;
-  background-color: black;
+  background-color: black; 
 }
 
 .top-bar{
-  background-color: rgba(0, 0, 0, 0.8);
+  background-color: rgba(0, 0, 0, 0.5);
   backdrop-filter: blur(8px);
   height: 4.5rem;
   width: 100vw;
@@ -51,6 +55,10 @@
   background-color: #333;
   color: #ddd;
   border-bottom: 1px solid #fff
+}
+
+.top-nav__item--active{
+  color: #fcf;
 }
 
 .top-nav__link{
@@ -138,7 +146,7 @@
 
 .cover-section__title{
   font-size: 4.5rem;
-  background-image: linear-gradient(60deg, #dd00ff, #ff44dd);
+  background-image: linear-gradient(60deg, #d0f, #f5d);
   background-clip: text;
   color: transparent;
   filter: drop-shadow(1px 1px 2px #880088);
@@ -146,8 +154,34 @@
 
 .intro-section{
   background-color: black;
-  display: inline-block;
   width: 100vw;
+  margin: 0;
+  padding: 0;
+}
+
+.intro-section__border-wrapper{
+  display: flex;
+  margin: 2rem;
+  border-radius: 1rem;
+  border: 1px solid transparent;
+
+  background: linear-gradient(black 0 0) padding-box, conic-gradient(from var(--border-angle), transparent, grey, transparent) border-box;
+  animation: bg-spin 3s linear infinite;
+}
+
+@keyframes bg-spin {
+  from{
+    --border-angle: 0turn;
+  }
+  to{
+    --border-angle: 1turn;
+  }
+}
+
+@property --border-angle {
+  syntax: "<angle>";
+  inherits: true;
+  initial-value: 0turn;
 }
 
 .intro-section__title{
@@ -156,7 +190,6 @@
 }
 
 .intro-section__me-image{
-  float: right;
   width: 30vw;
   margin: 1rem;
   border-radius: 1rem;
@@ -165,4 +198,11 @@
 .intro-section__paragraph{
   font-size: 1.25rem;
   color: white;
+}
+
+.interests-section{
+  background-color: #313;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
