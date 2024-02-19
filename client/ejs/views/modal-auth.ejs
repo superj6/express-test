@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="static/css/modal-auth.css">
+
+  <title>Modal Auth uwu</title>
+</head>
+<body class="modal-auth-page">
+  <header class="header-content column-align-center">
+    <div class="login-container column-align-center">
+      <h1 class="login-container__title">The Best Place to Login!</h1>
+      <button class="login-container__button">Login</button>
+    </div>
+  </header>
+  <main class="main-content">
+    <h1 class="main-content__title">Here's what you're looking for!</h1>
+    <p class="main-content__paragraph">Oops, you're not logged in...</p>
+  </main>
+  <div class="login-modal">
+    <div class="login-modal__container column-align-center">
+      <h1 class="login-modal__title">This is the Login Modal!</h1>
+      <form action="/html/api/modal-auth/login" method="post" class="column-align-center">
+	<label for="username">Username</label>
+	<input name="username" type="text" placeholder="User123" required>
+	<label for="password">Password</label>
+	<input name="password" type="text" placeholder="S3cureP4ss!" required>
+      </form>
+    </div>
+  </div>
+  <script src="static/js/auth-modal.js"></script>
+</body>
+</html>

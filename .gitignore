@@ -1,4 +1,5 @@
 client/react/dist/bundle.js
 node_modules/
 .env
+*.swp
 

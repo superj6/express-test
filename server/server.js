@@ -30,10 +30,6 @@ app.get('/html/template-home-1', function(req, res){
   res.sendFile(path.join(htmlViewPath, 'template-home-1.html'));
 });
 
-app.get('/html/modal-auth', function(req, res){
-  res.sendFile(path.join(htmlViewPath, 'modal-auth.html'));
-});
-
 //serve pages with ejs
 
 const clientEjsPath = path.join(clientPath, 'ejs');
@@ -49,6 +45,10 @@ app.get('/ejs', function(req, res){
 
 app.get('/ejs/test', function(req, res){
   res.render('test/index');
+});
+
+app.get('/ejs/modal-auth', function(req, res){
+  res.render('modal-auth');
 });
 
 //serve pages with react router

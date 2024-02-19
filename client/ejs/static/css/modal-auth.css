@@ -1,0 +1,71 @@
+.column-align-center{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.modal-auth-page{
+  margin: 0;
+  padding: 0;
+  width: 100vw;
+  background-color: #8ff;
+}
+
+.header-content{
+  background-color: #adf;
+  width: 100%
+}
+
+.login-container{
+  border: 2px solid black;
+  border-radius: 1rem;
+  margin: 1rem;
+  padding: 1rem;
+  width: 60%; 
+}
+
+.login-container__button{
+  width: 10rem;
+  height: 4rem;
+  background-color: lime;
+  font-size: 1.5rem;
+  border-radius: 0.5rem;
+}
+
+.login-container__button:hover{
+  background-color: limegreen;
+}
+
+.main-content{
+  width: 100vw;
+  background-color: #8ff;
+}
+
+.main-content__title{
+  text-align: center;
+}
+
+.main-content__paragraph{
+ padding-left: 4rem; 
+}
+
+.login-modal{
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(2px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.login-modal__container{
+  width: 80%;
+  height: 40%;
+  background-color: white;
+  border: 2px solid black;
+  border-radius: 1rem;
+}
