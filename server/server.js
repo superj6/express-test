@@ -20,9 +20,9 @@ app.get('/', function(req, res){
 const clientHtmlPath = path.join(clientPath, 'html');
 const htmlViewPath = path.join(clientHtmlPath, 'views');
 
-app.use('/html/static/', express.static(path.join(clientHtmlPath, 'static')));
+app.use('/html/static', express.static(path.join(clientHtmlPath, 'static')));
 
-app.get('/html/', function(req, res){
+app.get('/html', function(req, res){
   res.sendFile(path.join(htmlViewPath, 'index.html'));
 });
 
@@ -30,20 +30,24 @@ app.get('/html/template-home-1', function(req, res){
   res.sendFile(path.join(htmlViewPath, 'template-home-1.html'));
 });
 
+app.get('/html/modal-auth', function(req, res){
+  res.sendFile(path.join(htmlViewPath, 'modal-auth.html'));
+});
+
 //serve pages with ejs
 
 const clientEjsPath = path.join(clientPath, 'ejs');
 
-app.use('/ejs/static/', express.static(path.join(clientEjsPath, 'static')));
+app.use('/ejs/static', express.static(path.join(clientEjsPath, 'static')));
 
 app.set('views', path.join(clientEjsPath, 'views'));
 app.set('view engine', 'ejs');
 
-app.get('/ejs/', function(req, res){
+app.get('/ejs', function(req, res){
   res.render('index');
 });
 
-app.get('/ejs/test/', function(req, res){
+app.get('/ejs/test', function(req, res){
   res.render('test/index');
 });
 
@@ -52,8 +56,8 @@ app.get('/ejs/test/', function(req, res){
 const clientReactPath = path.join(clientPath, 'react');
 const reactDistPath = path.join(clientReactPath, 'dist');
 
-app.use('/react/dist/', express.static(reactDistPath));
-app.use('/react/static/', express.static(path.join(clientReactPath, 'src', 'static')));
+app.use('/react/dist', express.static(reactDistPath));
+app.use('/react/static', express.static(path.join(clientReactPath, 'src', 'static')));
 
 app.get('/react/*', function(req, res){
   res.sendFile(path.join(reactDistPath, 'index.html'));
