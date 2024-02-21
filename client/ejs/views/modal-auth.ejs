@@ -3,31 +3,32 @@
 <head>
   <meta charset="UTF-8">
   <link rel="stylesheet" href="static/css/modal-auth.css">
+  <link rel="icon" href="data:;base64,=">
 
   <title>Modal Auth uwu</title>
 </head>
 <body class="modal-auth-page">
-  <header class="header-content column-align-center">
-    <div class="login-container column-align-center">
+  <header class="header-content">
+    <div class="login-container">
       <h1 class="login-container__title">The Best Place to Login!</h1>
-      <button class="login-container__button">Login</button>
+      <ul class="login-container__button-list">
+	<li>
+	  <button id="login-modal-popup" class="login-container__button">Login</button>
+	</li>
+	<li>
+	  <button id="register-modal-popup" class="login-container__button">Register</button>
+	</li>
+      </ul>
     </div>
   </header>
   <main class="main-content">
     <h1 class="main-content__title">Here's what you're looking for!</h1>
     <p class="main-content__paragraph">Oops, you're not logged in...</p>
   </main>
-  <div class="login-modal">
-    <div class="login-modal__container column-align-center">
-      <h1 class="login-modal__title">This is the Login Modal!</h1>
-      <form action="/html/api/modal-auth/login" method="post" class="column-align-center">
-	<label for="username">Username</label>
-	<input name="username" type="text" placeholder="User123" required>
-	<label for="password">Password</label>
-	<input name="password" type="text" placeholder="S3cureP4ss!" required>
-      </form>
-    </div>
-  </div>
-  <script src="static/js/auth-modal.js"></script>
+  <% const modals = [{modalId: 'login-modal', titleText: 'Login', buttonText: 'Login', apiUrl: 'api/modal-auth/login'}, {modalId: 'register-modal', titleText: 'Registration', buttonText: 'Register', apiUrl: 'api/modal-auth/register'}]; %>
+  <% modals.forEach(modal => { %>
+  <%- include('../components/auth-modal', modal); -%>
+  <% }); %>
+  <script src="static/js/modal-auth.js"></script>
 </body>
 </html>

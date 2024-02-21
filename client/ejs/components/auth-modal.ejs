@@ -1,0 +1,16 @@
+<div id="<%= modalId %>" class="auth-modal">
+  <div class="auth-modal__container">
+    <button class="auth-modal__close">&times;</button>
+    <h1 class="auth-modal__title">This is the <%= titleText %> Modal!</h1>
+    <form action="<%= apiUrl %>" method="post" class="auth-modal__form">
+      <label for="username">Username</label>
+      <input name="username" type="text" placeholder="User123" class="auth-modal__input" required>
+      <label for="password">Password</label>
+      <input name="password" type="text" placeholder="S3cureP4ss!" class="auth-modal__input" required>
+      <button class="auth-modal__submit"><%= buttonText %></button>
+    </form>
+    <div class="auth-modal__banner">
+      <p class="auth-modal__message">Pepega Banner</p>
+    </div>
+  </div>
+</div>
