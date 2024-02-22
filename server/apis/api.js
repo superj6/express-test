@@ -11,8 +11,9 @@ const router = express.Router();
 passport.use(new LocalStrategy(auth.verify));
 
 router.post('/ejs/modal-auth/login', passport.authenticate('local', {
-  successRedirect: '/ejs/modal-auth',
-  failureRedirect: '/ejs/modal-auth/fail'
+  successReturnToOrRedirect: '/ejs/modal-auth',
+  failureRedirect: '/ejs/modal-auth/fail',
+  keepSessionInfo: true
 }));
 
 router.post('/ejs/modal-auth/logout', function(req, res, next){
