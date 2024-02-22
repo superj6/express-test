@@ -1,5 +1,6 @@
 const express = require('express');
 const path = require('path');
+const ensureLogIn = require('connect-ensure-login').ensureLoggedIn;
 
 const passport = require('../auth');
 
@@ -19,7 +20,14 @@ router.get('/test', function(req, res){
 });
 
 router.get('/modal-auth', function(req, res){
-  res.render('modal-auth');
+  if(!req.user){
+    return res.render('modal-auth', {user: req.user, userMessage: "Oops you're not logged in."});
+  }
+  res.render('modal-auth', {user: req.user, userMessage: 'Meow!'});
+});
+
+router.get('/modal-auth/secret', ensureLogIn('/ejs/modal-auth'), function(req, res){
+  res.render('index');
 });
 
 module.exports = router;

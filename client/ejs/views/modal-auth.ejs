@@ -11,24 +11,35 @@
   <header class="header-content">
     <div class="login-container">
       <h1 class="login-container__title">The Best Place to Login!</h1>
+      <% if(user){ %>
+        <p>Hello <%= user.username %></p>
+      <% } %>
       <ul class="login-container__button-list">
-	<li>
-	  <button id="login-modal-popup" class="login-container__button">Login</button>
-	</li>
-	<li>
-	  <button id="register-modal-popup" class="login-container__button">Register</button>
-	</li>
+	<% if(!user){ %>
+	  <li>
+	    <button id="login-modal-popup" class="login-container__button modal-popup">Login</button>
+	  </li>
+	  <li>
+	    <button id="register-modal-popup" class="login-container__button modal-popup">Register</button>
+	  </li>
+	<% }else{ %>
+	  <li>
+	    <button id="logout" class="login-container__button">Logout</button>
+	  </li>
+	<% } %>
       </ul>
     </div>
   </header>
   <main class="main-content">
     <h1 class="main-content__title">Here's what you're looking for!</h1>
-    <p class="main-content__paragraph">Oops, you're not logged in...</p>
+    <p class="main-content__paragraph"><%= userMessage %></p>
   </main>
-  <% const modals = [{modalId: 'login-modal', titleText: 'Login', buttonText: 'Login', apiUrl: '/api/ejs/modal-auth/login'}, {modalId: 'register-modal', titleText: 'Registration', buttonText: 'Register', apiUrl: '/api/ejs/modal-auth/register'}]; %>
-  <% modals.forEach(modal => { %>
-  <%- include('../components/auth-modal', modal); -%>
-  <% }); %>
+  <% if(!user){ %>
+    <% const modals = [{modalId: 'login-modal', titleText: 'Login', buttonText: 'Login', apiUrl: '/api/ejs/modal-auth/login'}, {modalId: 'register-modal', titleText: 'Registration', buttonText: 'Register', apiUrl: '/api/ejs/modal-auth/register'}]; %>
+    <% modals.forEach(modal => { %>
+      <%- include('../components/auth-modal', modal); -%>
+    <% }); %>
+  <% } %>
   <script src="static/js/modal-auth.js"></script>
 </body>
 </html>

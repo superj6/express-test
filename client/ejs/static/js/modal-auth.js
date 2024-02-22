@@ -1,4 +1,4 @@
-var loginButtons = document.getElementsByClassName('login-container__button');
+var loginButtons = document.getElementsByClassName('modal-popup');
 var closeButtons = document.getElementsByClassName('auth-modal__close');
 
 Array.from(loginButtons).forEach(button => {
