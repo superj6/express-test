@@ -24,7 +24,9 @@
 	  </li>
 	<% }else{ %>
 	  <li>
-	    <button id="logout" class="login-container__button">Logout</button>
+	    <form action="/api/ejs/modal-auth/logout" method="post">
+	      <button type="submit" class="login-container__button">Logout</button>
+	    </form>
 	  </li>
 	<% } %>
       </ul>
