@@ -4,10 +4,10 @@
     <h1 class="auth-modal__title">This is the <%= titleText %> Modal!</h1>
     <form action="<%= apiUrl %>" method="post" class="auth-modal__form">
       <label for="username">Username</label>
-      <input name="username" type="text" placeholder="User123" class="auth-modal__input" required>
+      <input name="username" type="text" placeholder="User123" class="auth-modal__input" required autofocus>
       <label for="password">Password</label>
-      <input name="password" type="text" placeholder="S3cureP4ss!" class="auth-modal__input" required>
-      <button class="auth-modal__submit"><%= buttonText %></button>
+      <input name="password" type="password" placeholder="S3cureP4ss!" class="auth-modal__input" required>
+      <button type="submit" class="auth-modal__submit"><%= buttonText %></button>
     </form>
     <div class="auth-modal__banner">
       <p class="auth-modal__message">Pepega Banner</p>

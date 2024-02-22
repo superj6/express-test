@@ -25,7 +25,7 @@
     <h1 class="main-content__title">Here's what you're looking for!</h1>
     <p class="main-content__paragraph">Oops, you're not logged in...</p>
   </main>
-  <% const modals = [{modalId: 'login-modal', titleText: 'Login', buttonText: 'Login', apiUrl: 'api/modal-auth/login'}, {modalId: 'register-modal', titleText: 'Registration', buttonText: 'Register', apiUrl: 'api/modal-auth/register'}]; %>
+  <% const modals = [{modalId: 'login-modal', titleText: 'Login', buttonText: 'Login', apiUrl: '/api/ejs/modal-auth/login'}, {modalId: 'register-modal', titleText: 'Registration', buttonText: 'Register', apiUrl: '/api/ejs/modal-auth/register'}]; %>
   <% modals.forEach(modal => { %>
   <%- include('../components/auth-modal', modal); -%>
   <% }); %>

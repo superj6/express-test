@@ -1,6 +1,8 @@
 const express = require('express');
 const path = require('path');
 
+const passport = require('../auth');
+
 const router = express.Router();
 
 const clientPath = path.resolve(__dirname, '../../client/ejs');

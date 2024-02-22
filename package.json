@@ -5,16 +5,21 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon server/server.js",
+    "start": "nodemon server/app.js",
     "build": "webpack"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "connect-sqlite3": "^0.9.13",
     "ejs": "^3.1.9",
     "express": "^4.18.2",
+    "express-session": "^1.18.0",
+    "passport": "^0.7.0",
+    "passport-local": "^1.0.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "sqlite3": "^5.1.7",
     "svelte": "^4.2.11"
   },
   "devDependencies": {
