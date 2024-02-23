@@ -13,6 +13,7 @@ passport.use(new LocalStrategy(auth.verify));
 router.post('/ejs/modal-auth/login', passport.authenticate('local', {
   successReturnToOrRedirect: '/ejs/modal-auth',
   failureRedirect: '/ejs/modal-auth/fail',
+  failureFlash: true,
   keepSessionInfo: true
 }));
 
@@ -24,7 +25,17 @@ router.post('/ejs/modal-auth/logout', function(req, res, next){
 });
 
 router.post('/ejs/modal-auth/register', function(req, res, next){
-  auth.addUser(req, res, next);
+  auth.addUser(req.body.username, req.body.password, function(err){
+    if (err) { return next(err); }
+    var user = {
+      id: this.lastID,
+      username: req.body.username
+    };
+    req.login(user, function(err) {
+      if (err) { return next(err); }
+      res.redirect('/ejs/modal-auth');
+    }); 
+  });
 });
 
 module.exports = router;
