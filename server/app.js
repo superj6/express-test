@@ -4,13 +4,16 @@ const session = require('express-session');
 const passport = require('passport');
 const SQLiteStore = require('connect-sqlite3')(session);
 const flash = require('connect-flash');
+const http = require('http');
 require('dotenv').config();
 
 const routes = require('./routes/route');
-const apis = require('./api');
+const api = require('./api');
+const socketServer = require('./socket-server');
 
+const port = process.env.PORT || 8080;
 const app = express();
-const port = process.env.PORT | 8080;
+const server = http.createServer(app);
 
 const clientPath = path.resolve(__dirname, '../client');
 
@@ -28,9 +31,11 @@ app.use(passport.initialize());
 app.use(passport.session());
 app.use(flash());
 
-app.use('/api', apis);
+app.use('/api', api);
 app.use(routes);
 
-app.listen(port, () => {
+socketServer(server);
+
+server.listen(port, () => {
   console.log(`Express-test app listening on port ${port}`)
 });
