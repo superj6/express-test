@@ -19,7 +19,7 @@ router.get('/test', function(req, res){
 
 router.get('/modal-auth', function(req, res){
   if(!req.isAuthenticated()){
-    return res.render('modal-auth', {user: req.user, userMessage: "Oops you're not logged in."});
+    return res.render('modal-auth', {error: req.flash('error'), user: req.user, userMessage: "Oops you're not logged in."});
   }
   res.render('modal-auth', {user: req.user, userMessage: 'Meow!'});
 });

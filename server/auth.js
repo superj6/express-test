@@ -33,12 +33,12 @@ function verify(username, password, cb){
 function addUser(username, password, cb){
   var salt = crypto.randomBytes(16);
   crypto.pbkdf2(password, salt, 310000, 32, 'sha256', function(err, hashedPassword) {
-    if (err) { return next(err); }
+    if (err) { return cb(err); }
     db.run('INSERT INTO users (username, hashed_password, salt) VALUES (?, ?, ?)', [
       username,
       hashedPassword,
       salt
-    ], cb(err));
+    ], cb);
   });  
 }
 

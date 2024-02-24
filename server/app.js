@@ -3,6 +3,7 @@ const path = require('path');
 const session = require('express-session');
 const passport = require('passport');
 const SQLiteStore = require('connect-sqlite3')(session);
+const flash = require('connect-flash');
 
 const routes = require('./routes/route');
 const apis = require('./apis/api');
@@ -24,6 +25,7 @@ app.use(session({
 }));
 app.use(passport.initialize());
 app.use(passport.session());
+app.use(flash());
 
 app.use('/api', apis);
 app.use(routes);

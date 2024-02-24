@@ -14,6 +14,9 @@
       <% if(user){ %>
         <p>Hello <%= user.username %></p>
       <% } %>
+      <% if(locals.error && error.length){ %>
+        <p> Error: <%= error %></p>
+      <% } %>
       <ul class="login-container__button-list">
 	<% if(!user){ %>
 	  <li>
