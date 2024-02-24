@@ -4,11 +4,19 @@
   <meta charset="UTF-8">
   <title>Socket Stamps</title>
   
-  <link rel="stylesheet" href="/html/static/js/socket-stamp.js">
+  <link rel="stylesheet" href="/html/static/css/socket-stamp.css">
 </head>
-<body>
-  <h1>The Socket Stamp Site</h1>
-
-  <script src="static/js/socket-stamp.js"></script>
+<body class="stamp-page">
+  <h1 class="stamp-page__title">The Socket Stamp Site</h1>
+  <canvas class="stamp-canvas">
+    
+  </canvas>
+  <div class="stamp-settings">
+    <h2 class="stamp-settings__title">Stamp Settings</h2>
+    <label for="message">Add text: </label>
+    <input name="message" placeholder="A cool message...">
+    <p>Then click on canvas to add!</p>
+  </div>
+  <script src="/html/static/js/socket-stamp.js"></script>
 </body>
 </html>
