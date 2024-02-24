@@ -16,5 +16,9 @@ router.get('/template-home-1', function(req, res){
   res.sendFile(path.join(viewPath, 'template-home-1.html'));
 });
 
+router.get('/socket-stamp', function(req, res){
+  res.sendFile(path.join(viewPath, 'socket-stamp.html'));
+});
+
 module.exports = router;
 

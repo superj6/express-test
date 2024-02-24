@@ -4,7 +4,7 @@ const crypto = require('crypto');
 const passport = require('passport');
 const LocalStrategy = require('passport-local');
 
-const auth = require('../auth');
+const auth = require('./auth');
 
 const router = express.Router();
 

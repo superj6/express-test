@@ -28,4 +28,8 @@ router.get('/modal-auth/secret', ensureLogIn('/ejs/modal-auth'), function(req, r
   res.render('modal-auth', {user: req.user, userMessage: 'You found the secret!'});
 });
 
+router.get('/session-draw', function(req, res){
+
+});
+
 module.exports = router;

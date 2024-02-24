@@ -6,7 +6,7 @@ const SQLiteStore = require('connect-sqlite3')(session);
 const flash = require('connect-flash');
 
 const routes = require('./routes/route');
-const apis = require('./apis/api');
+const apis = require('./api');
 
 const app = express();
 const port = 8080;
