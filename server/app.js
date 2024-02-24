@@ -8,7 +8,7 @@ const http = require('http');
 require('dotenv').config();
 
 const routes = require('./routes/route');
-const api = require('./api');
+const api = require('./apis/api');
 const socketServer = require('./socket-server');
 
 const port = process.env.PORT || 8080;
