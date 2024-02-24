@@ -4,12 +4,13 @@ const session = require('express-session');
 const passport = require('passport');
 const SQLiteStore = require('connect-sqlite3')(session);
 const flash = require('connect-flash');
+require('dotenv').config();
 
 const routes = require('./routes/route');
 const apis = require('./api');
 
 const app = express();
-const port = 8080;
+const port = process.env.PORT | 8080;
 
 const clientPath = path.resolve(__dirname, '../client');
 
@@ -18,7 +19,7 @@ app.set('view engine', 'ejs');
 
 app.use(express.urlencoded({ extended: false }));
 app.use(session({
-  secret: 'keyboard cat',
+  secret: process.env.SESSION_SECRET,
   resave: true, // don't save session if unmodified
   saveUninitialized: true, // don't create session until something stored
   store: new SQLiteStore({ db: 'sessions.db', dir: './var/db' })
