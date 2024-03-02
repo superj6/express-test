@@ -14,6 +14,12 @@ const socketServer = require('./socket-server');
 const port = process.env.PORT || 8080;
 const app = express();
 const server = http.createServer(app);
+const sessionMiddleWare = session({
+  secret: process.env.SESSION_SECRET,
+  resave: true, // don't save session if unmodified
+  saveUninitialized: true, // don't create session until something stored
+  store: new SQLiteStore({ db: 'sessions.db', dir: './var/db' })
+});
 
 const clientPath = path.resolve(__dirname, '../client');
 
@@ -21,12 +27,7 @@ app.set('views', path.join(clientPath, 'ejs/views'));
 app.set('view engine', 'ejs');
 
 app.use(express.urlencoded({ extended: false }));
-app.use(session({
-  secret: process.env.SESSION_SECRET,
-  resave: true, // don't save session if unmodified
-  saveUninitialized: true, // don't create session until something stored
-  store: new SQLiteStore({ db: 'sessions.db', dir: './var/db' })
-}));
+app.use(sessionMiddleWare);
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(flash());
@@ -34,7 +35,7 @@ app.use(flash());
 app.use('/api', api);
 app.use(routes);
 
-socketServer(server);
+socketServer.init(server, sessionMiddleWare);
 
 server.listen(port, () => {
   console.log(`Express-test app listening on port ${port}`)

@@ -4,8 +4,8 @@ const path = require('path');
 const router = express.Router();
 
 
-router.get('/socket-stamp/getAllItems', function(req, res){
-
+router.get('/socket-stamp/getShapes', function(req, res){
+  res.send('hi');
 });
 
 module.exports = router;

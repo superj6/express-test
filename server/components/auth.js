@@ -1,7 +1,8 @@
 const express = require('express');
 const passport = require('passport');
 const crypto = require('crypto');
-const db = require('./db');
+
+const db = require('../db');
 
 passport.serializeUser(function(user, cb) {
   process.nextTick(function() {

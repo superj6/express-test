@@ -9,14 +9,28 @@
   font-size: 2.5rem; 
 }
 
-.stamp-canvas{
-  background-color: white;
+.main-display{
+  position: relative;
 }
 
 .stamp-canvas{
+  background-color: white;
   width: 90vw;
   height: 50vw;
   border: 2px solid purple;
+}
+
+.active-users-display{
+  position: absolute;
+  top: 0.5rem;
+  left: 0.5rem;
+  background-color: lime;
+  border: 1px solid green;
+  border-radius: 0.5rem;
+}
+
+.active-users-display__title{
+  font-size: 1rem;
 }
 
 .stamp-settings{

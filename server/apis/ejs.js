@@ -3,7 +3,7 @@ const path = require('path');
 const passport = require('passport');
 const LocalStrategy = require('passport-local');
 
-const auth = require('../auth');
+const auth = require('../components/auth');
 
 const router = express.Router();
 
