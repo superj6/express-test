@@ -13,8 +13,10 @@ let shapes = new Set();
 let activeUsers = new Set();
 
 function displayActiveUsers(activeUsers){
-  activeUsersSorted = Array.from(activeUsers).sort()
-
+  activeUsersSorted = Array.from(activeUsers).sort((x, y) => {
+    return x.localeCompare(y, undefined, {sensitivity: 'base'});
+  });
+ 
   userList = []
   activeUsersSorted.forEach((user) => {
     let li = document.createElement('li');
@@ -31,7 +33,7 @@ function drawShape(shape){
       ctx.fillStyle = shape.color;
       ctx.font = '2rem serif';
       ctx.textBaseline = 'top';
-      ctx.fillText(shape.content, shape.coord.x, shape.coord.y);
+      ctx.fillText(shape.content, shape.coordx, shape.coordy);
       break;
   }
 }
@@ -43,15 +45,17 @@ function drawShapes(shapes){
 }
 
 async function initShapes(){
-  //shapes.add({type: 'text', coord: {x: 300, y: 100}, color: 'blue', content: 'hello'});
-  shapes = await fetch('/api/html/socket-stamp/getShapes');
-  drawShapes(shapes);	
+  //shapes.add({type: 'text', coordx: 300, coordy: 100, color: 'blue', content: 'hello'});
+  const response = await fetch('/api/html/socket-stamp/getShapes');
+  const fetchedShapes = await response.json();
+  fetchedShapes.forEach(async shape => shapes.add(shape));
+  drawShapes(shapes);
 }
 
 socket.on('init', (msg) => {
   initShapes();
 
-  msg.users.forEach(user => activeUsers.add(user));
+  msg.users.forEach((user) => activeUsers.add(user));
   displayActiveUsers(activeUsers);
 });
 

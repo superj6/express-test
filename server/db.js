@@ -30,7 +30,8 @@ db.serialize(function(){
     salt
   ]);
 
-  db.run('INSERT OR IGNORE INTO shapes (sessionid, type, coordX, coordY, color, content) VALUES (?, ?, ?, ?, ?, ?)', [
+  db.run('INSERT OR IGNORE INTO shapes (id, sessionid, type, coordX, coordY, color, content) VALUES (?, ?, ?, ?, ?, ?, ?)', [
+    0,
     '0',
     'text',
     300,
