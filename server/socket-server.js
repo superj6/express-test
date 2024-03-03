@@ -1,5 +1,7 @@
 const socketIo = require('socket.io');
 
+const shapes = require('./components/shapes');
+
 let io;
 
 const sessionToRoom = (sessionId) => {
@@ -32,24 +34,27 @@ const init = (server, sessionMiddleWare) => {
     const sessionId = socket.request.session.id;
 
     if(!sessionActive(sessionId)){
-      socket.broadcast.emit('user join', {user: sessionId});
+      socket.broadcast.emit('user joined', sessionId);
     }
 
     socket.join(sessionToRoom(sessionId));
+    socket.emit('init', getActiveSessions());
 
-    console.log(`SessionId: ${sessionId}`);
+    console.log(`sessionId: ${sessionId}`);
 
-    socket.join(sessionToRoom(sessionId));
-
-    console.log(getActiveSessions());
-
-    socket.emit('init', {users: getActiveSessions()});
+    socket.on('add shape', (shape) => {
+      shape.sessionid = sessionId;
+      shape.color = 'red';
+        
+      shapes.addShape(shape, (err) => {
+        if(err){ return;}	
+	io.emit('shape added', shape);
+      }); 
+    });
 
     socket.on('disconnect', () => {
-      console.log(getActiveSessions());
-
       if(!sessionActive(sessionId)){
-        socket.broadcast.emit('user leave', {user: sessionId});
+        socket.broadcast.emit('user left', sessionId);
       }
     });
   });

@@ -1,19 +1,23 @@
 const db = require('../db');
-const socketServer = require('../socket-server');
 
-function getAllActiveShapes(cb){
-  activeSessions = ['0', ...socketServer.getActiveSessions()]
+function getUsersShapes(users, cb){
+  placeholder = new Array(users.length).fill('?').join(', ');
 
-  placeholder = new Array(activeSessions.length).fill('?').join(', ');
-
-  db.all(`SELECT * FROM shapes WHERE sessionid IN (${placeholder})`, [...activeSessions], cb); 
+  db.all(`SELECT * FROM shapes WHERE sessionid IN (${placeholder})`, [...users], cb); 
 }
 
-function getUserShapes(sessionId, cb){
-  db.all('Select * FROM shapes where sessionid in ?', [sessionId], cb);
+function addShape(shape, cb){
+  db.run('INSERT INTO shapes (sessionid, type, coordx, coordy, color, content) VALUES (?, ?, ?, ?, ?, ?)', [
+    shape.sessionid,
+    shape.type,
+    shape.coordx,
+    shape.coordy,
+    shape.color,
+    shape.content
+  ], cb);
 }
 
 module.exports = {
-  getAllActiveShapes,
-  getUserShapes
+  getUsersShapes,
+  addShape
 }

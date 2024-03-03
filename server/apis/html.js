@@ -1,13 +1,15 @@
 const express = require('express');
 const path = require('path');
 
-const shapes = require('../components/shapes.js');
+const socketServer = require('../socket-server');
+const shapes = require('../components/shapes');
 
 const router = express.Router();
 
+router.get('/socket-stamp/getAllShapes', function(req, res){
+  users = ['0', ...socketServer.getActiveSessions()];
 
-router.get('/socket-stamp/getShapes', function(req, res){
-  shapes.getAllActiveShapes((err, rows) => {
+  shapes.getUsersShapes(users, (err, rows) => {
     if(err){ res.send('error');}
     res.json(rows);
   });
