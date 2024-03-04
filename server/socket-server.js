@@ -1,11 +1,12 @@
 const socketIo = require('socket.io');
+const randomColor = require('randomcolor');
 
 const shapes = require('./components/shapes');
 
 let io;
 
-const sessionToRoom = (sessionId) => {
-  return `session ${sessionId}`;
+const sessionToRoom = (session) => {
+  return `session ${session.id}`;
 };
 
 const getActiveSessions = () => {
@@ -21,8 +22,8 @@ const getActiveSessions = () => {
   return activeSessions;
 };
 
-const sessionActive = (sessionId) => {
-  return io.sockets.adapter.rooms.has(sessionToRoom(sessionId));
+const sessionActive = (session) => {
+  return io.sockets.adapter.rooms.has(sessionToRoom(session));
 };
 
 const init = (server, sessionMiddleWare) => {
@@ -31,20 +32,24 @@ const init = (server, sessionMiddleWare) => {
   io.engine.use(sessionMiddleWare);
 
   io.on("connection", (socket) => {
-    const sessionId = socket.request.session.id;
-
-    if(!sessionActive(sessionId)){
-      socket.broadcast.emit('user joined', sessionId);
+    const session = socket.request.session;
+   
+    if(!session.color){
+      session.color = randomColor();
     }
 
-    socket.join(sessionToRoom(sessionId));
+    if(!sessionActive(session.id)){
+      socket.broadcast.emit('user joined', session.id);
+    }
+
+    socket.join(sessionToRoom(session));
     socket.emit('init', getActiveSessions());
 
-    console.log(`sessionId: ${sessionId}`);
+    console.log(`sessionId: ${session.id}`);
 
     socket.on('add shape', (shape) => {
-      shape.sessionid = sessionId;
-      shape.color = 'red';
+      shape.sessionid = session.id;
+      shape.color = session.color;
         
       shapes.addShape(shape, (err) => {
         if(err){ return;}	
@@ -53,8 +58,8 @@ const init = (server, sessionMiddleWare) => {
     });
 
     socket.on('disconnect', () => {
-      if(!sessionActive(sessionId)){
-        socket.broadcast.emit('user left', sessionId);
+      if(!sessionActive(session.id)){
+        socket.broadcast.emit('user left', session.id);
       }
     });
   });
