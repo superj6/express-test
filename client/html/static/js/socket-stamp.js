@@ -97,7 +97,14 @@ socket.on('user joined', (user) => {
 
 socket.on('user left', (user) => {
   activeUsers.delete(user);
+  shapes.forEach((shape) => {
+    if(shape.sessionid === user){
+      shapes.delete(shape);
+    }
+  });
+
   displayActiveUsers(activeUsers);
+  drawShapes(shapes);
 });
 
 socket.on('shape added', (shape) => {
