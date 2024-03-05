@@ -44,14 +44,6 @@ const init = (server, sessionMiddleWare) => {
   io.use((socket, next) => {
     const req = socket.request;
 
-    req.session.reload(() => {
-      next();
-    });
-  });
-
-  io.use((socket, next) => {
-    const req = socket.request;
-
     console.log(req.session);
 
     if(!req.session.stampuser){
@@ -60,7 +52,6 @@ const init = (server, sessionMiddleWare) => {
 	name: crypto.randomBytes(5).toString('hex'),
 	color: randomColor()
       };
-      req.session.touch();
       req.session.save();
     }
     next();
@@ -77,7 +68,7 @@ const init = (server, sessionMiddleWare) => {
     }
 
     socket.join(sessionToRoom(req.session));
-    socket.emit('init', getActiveUsers());
+    socket.emit('init', req.session.stampuser, getActiveUsers());
 
     console.log(`sessionId: ${req.session.id}`);
 

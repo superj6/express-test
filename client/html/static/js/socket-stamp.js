@@ -1,4 +1,6 @@
 const socket = io();
+
+const helloUser = document.getElementById('hello-user');
 const activeUsersList = document.getElementById('socket-active-users-list');
 const canvas = document.getElementById('socket-stamp-canvas');
 const ctx = canvas.getContext('2d');
@@ -10,10 +12,17 @@ canvas.height = 500;
 const dpi = window.devicePixelRatio;
 ctx.scale(dpi, dpi);
 
+let myUser;
 let shapes = new Set();
 let activeUsers = new Map();
 
-function displayActiveUsers(activeUsers){
+function displayMe(myUser){
+  helloUser.textContent = myUser.name;
+  helloUser.style.color = myUser.color;
+  helloUser.style.fontWeight = 'bold';
+}
+
+function displayActiveUsers(myUser, activeUsers){
   activeUsersSorted = Array.from(activeUsers.values()).sort((x, y) => {
     return x.name.localeCompare(y.name, undefined, {sensitivity: 'base'});
   });
@@ -23,6 +32,7 @@ function displayActiveUsers(activeUsers){
     let li = document.createElement('li');
     li.textContent = user.name;
     li.style.color = user.color
+    if(user.id === myUser.id){ li.style.fontWeight = 'bold';}
     userList.push(li);
   });
 
@@ -48,7 +58,6 @@ function drawShapes(shapes){
 }
 
 async function addFetchedShapes(fetchedShapes){
-  console.log(fetchedShapes);
   fetchedShapes.forEach(async shape => shapes.add(shape));
   drawShapes(shapes);
 }
@@ -97,16 +106,19 @@ canvas.addEventListener("click", (event) => {
   addShape(Math.round(canvasLeft), Math.round(canvasTop));
 });
 
-socket.on('init', (users) => {
+socket.on('init', (me, users) => {
+  myUser = me;
+  displayMe(myUser);
+
   users.forEach((user) => activeUsers.set(user.id, user));
-  displayActiveUsers(activeUsers);
+  displayActiveUsers(myUser, activeUsers);
 
   initShapes();
 });
 
 socket.on('user joined', (user) => {
   activeUsers.set(user.id, user);
-  displayActiveUsers(activeUsers);
+  displayActiveUsers(myUser, activeUsers);
 
   getUserShapes(user.id);
 });
@@ -120,7 +132,7 @@ socket.on('user left', (userid) => {
   });
 
   drawShapes(shapes);
-  displayActiveUsers(activeUsers);
+  displayActiveUsers(myUser, activeUsers);
 });
 
 socket.on('shape added', (shape) => {
