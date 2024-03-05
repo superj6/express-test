@@ -44,8 +44,6 @@ const init = (server, sessionMiddleWare) => {
   io.use((socket, next) => {
     const req = socket.request;
 
-    console.log(req.session);
-
     if(!req.session.stampuser){
       req.session.stampuser = {
         id: crypto.randomBytes(10).toString('hex'),
@@ -59,8 +57,6 @@ const init = (server, sessionMiddleWare) => {
 
   io.on("connection", (socket) => {
     const req = socket.request; 
-
-    console.log(req.session);
 
     if(!sessionActive(req.session)){
       activeUsers.set(req.session.id, req.session.stampuser);
