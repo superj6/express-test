@@ -6,10 +6,17 @@ const shapes = require('../components/shapes');
 
 const router = express.Router();
 
-router.get('/socket-stamp/getAllShapes', function(req, res){
-  users = ['0', ...socketServer.getActiveSessions()];
+router.get('/socket-stamp/getUserShapes', function(req, res){
+  shapes.getUserShapes(req.query.userid, (err, rows) => {
+    if(err){ res.send('error');}
+    res.json(rows);
+  });
+});
 
-  shapes.getUsersShapes(users, (err, rows) => {
+router.get('/socket-stamp/getAllShapes', function(req, res){
+  userids = ['0', ...socketServer.getActiveUserIds()];
+
+  shapes.getUsersShapes(userids, (err, rows) => {
     if(err){ res.send('error');}
     res.json(rows);
   });

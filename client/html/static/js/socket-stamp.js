@@ -11,17 +11,18 @@ const dpi = window.devicePixelRatio;
 ctx.scale(dpi, dpi);
 
 let shapes = new Set();
-let activeUsers = new Set();
+let activeUsers = new Map();
 
 function displayActiveUsers(activeUsers){
-  activeUsersSorted = Array.from(activeUsers).sort((x, y) => {
-    return x.localeCompare(y, undefined, {sensitivity: 'base'});
+  activeUsersSorted = Array.from(activeUsers.values()).sort((x, y) => {
+    return x.name.localeCompare(y.name, undefined, {sensitivity: 'base'});
   });
  
   userList = []
   activeUsersSorted.forEach((user) => {
     let li = document.createElement('li');
-    li.textContent = user; 
+    li.textContent = user.name;
+    li.style.color = user.color
     userList.push(li);
   });
 
@@ -46,12 +47,25 @@ function drawShapes(shapes){
   });   
 }
 
+async function addFetchedShapes(fetchedShapes){
+  console.log(fetchedShapes);
+  fetchedShapes.forEach(async shape => shapes.add(shape));
+  drawShapes(shapes);
+}
+
 async function initShapes(){
   //shapes.add({type: 'text', coordx: 300, coordy: 100, color: 'blue', content: 'hello'});
   const response = await fetch('/api/html/socket-stamp/getAllShapes');
   const fetchedShapes = await response.json();
-  fetchedShapes.forEach(async shape => shapes.add(shape));
-  drawShapes(shapes);
+  addFetchedShapes(fetchedShapes);
+}
+
+async function getUserShapes(userid){
+  const response = await fetch('/api/html/socket-stamp/getUserShapes?' + new URLSearchParams({
+    userid: userid
+  }));
+  const fetchedShapes = await response.json();
+  addFetchedShapes(fetchedShapes);
 }
 
 function addShape(coordX, coordY){
@@ -84,32 +98,32 @@ canvas.addEventListener("click", (event) => {
 });
 
 socket.on('init', (users) => {
-  initShapes();
-
-  users.forEach((user) => activeUsers.add(user));
+  users.forEach((user) => activeUsers.set(user.id, user));
   displayActiveUsers(activeUsers);
+
+  initShapes();
 });
 
 socket.on('user joined', (user) => {
-  activeUsers.add(user);
+  activeUsers.set(user.id, user);
   displayActiveUsers(activeUsers);
+
+  getUserShapes(user.id);
 });
 
-socket.on('user left', (user) => {
-  activeUsers.delete(user);
+socket.on('user left', (userid) => {
+  activeUsers.delete(userid);
   shapes.forEach((shape) => {
-    if(shape.sessionid === user){
+    if(shape.userid === userid){
       shapes.delete(shape);
     }
   });
 
-  displayActiveUsers(activeUsers);
   drawShapes(shapes);
+  displayActiveUsers(activeUsers);
 });
 
 socket.on('shape added', (shape) => {
-  if(!shapes.has(shape)){
-    shapes.add(shape);
-    drawShape(shape);
-  }
+  shapes.add(shape);
+  drawShape(shape);
 });

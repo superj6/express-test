@@ -16,7 +16,7 @@ const app = express();
 const server = http.createServer(app);
 const sessionMiddleWare = session({
   secret: process.env.SESSION_SECRET,
-  resave: true, // don't save session if unmodified
+  resave: false, // don't save session if unmodified
   saveUninitialized: true, // don't create session until something stored
   store: new SQLiteStore({ db: 'sessions.db', dir: './var/db' })
 });

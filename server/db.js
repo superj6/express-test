@@ -15,7 +15,7 @@ db.serialize(function(){
 
   db.run('CREATE TABLE IF NOT EXISTS shapes ( '+
     'id INTEGER PRIMARY KEY, ' +
-    'sessionid TEXT, ' +
+    'userid TEXT, ' +
     'type TEXT, ' +
     'coordx INTEGER, ' + 
     'coordy INTEGER, ' +
@@ -30,7 +30,7 @@ db.serialize(function(){
     salt
   ]);
 
-  db.run('INSERT OR IGNORE INTO shapes (id, sessionid, type, coordx, coordy, color, content) VALUES (?, ?, ?, ?, ?, ?, ?)', [
+  db.run('INSERT OR IGNORE INTO shapes (id, userid, type, coordx, coordy, color, content) VALUES (?, ?, ?, ?, ?, ?, ?)', [
     0,
     '0',
     'text',
