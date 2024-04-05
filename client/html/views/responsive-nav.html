@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html class="scroll-dark">
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="/html/static/css/responsive-nav.css">
+  <title>Responsive Nav</title>
+</head>
+<body>
+  <header class="top-head">
+    <div class="top-head__wrap">
+      <a href="home" class="nav-link">
+        <h1 class="top-head__title">uwu</h1>
+      </a>
+      <button class="top-head__drop-ham">&#9776;</button>
+    </div>
+    <div class="top-head__main">
+      <nav class="top-nav">
+	<ul class="top-nav__list">
+	  <li class="top-nav__item top-nav__item--has-drop">
+	    <a href="page-a" class="nav-link top-nav__link">Page A *</a>
+	    <button class="top-nav__drop-button">Page A *</button>
+	    <ul class="drop-nav">
+	      <li class="drop-nav__item drop-nav__item--only-narrow">
+		<a href="page-a" class="nav-link">Page A</a>
+	      </li>
+	      <li class="drop-nav__item">
+		<a href="page-a#drop-1" class="nav-link">Drop 1</a>
+	      </li>
+	      <li class="drop-nav__item">
+		<a href="page-a#drop-2" class="nav-link">Drop 2</a>
+	      </li>
+	    </ul>
+	  </li>
+	  <li class="top-nav__item top-nav__item--has-drop">
+	    <a href="page-b" class="nav-link top-nav__link">Page B *</a>
+	    <button class="top-nav__drop-button">Page B *</button>
+	    <ul class="drop-nav">
+	      <li class="drop-nav__item drop-nav__item--only-narrow">
+		<a href="page-b" class="nav-link">Page B</a>
+	      </li>
+	      <li class="drop-nav__item">
+                <a href="page-b#drop-1" class="nav-link">Drop 1</a>
+	      </li>
+	    </ul>
+	  </li>
+	  <li class="top-nav__item">
+	    <a href="page-c" class="nav-link">Page C</a>
+	  </li>
+	</ul>
+      </nav>
+      <ul class="top-auth">
+	<li class="top-auth__item">
+          <a href="login" class="nav-link top-auth__link">Login</a>
+	</li>
+	<li class="top-auth__item">
+	  <a href="signup" class="nav-link top-auth__link">Sign Up</a>
+	</li>
+      </ul>
+    </div>
+  </header>
+  <main  class="content">
+    <h1>Responsive Nav</h1>
+  </main>
+  <script src="/html/static/js/responsive-nav.js"></script>
+</body>
+</html>

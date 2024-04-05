@@ -20,5 +20,9 @@ router.get('/socket-stamp', function(req, res){
   res.sendFile(path.join(viewPath, 'socket-stamp.html'));
 });
 
+router.get('/responsive-nav', function(req, res){
+  res.sendFile(path.join(viewPath, 'responsive-nav.html'));
+});
+
 module.exports = router;
 

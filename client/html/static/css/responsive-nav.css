@@ -1,0 +1,194 @@
+body{
+  margin: 0;
+  padding: 0;
+}
+
+.nav-link{
+  color: darkblue;
+  text-decoration: none;
+}
+
+.top-head{
+  display: flex;
+  flex-wrap: wrap;
+  border-bottom: 1px solid black;
+  width: 100%;
+  position: sticky;
+  top: 0;
+  background-color: white;
+  width: 100%;
+}
+
+.top-head__wrap{
+  display: flex;
+  justify-content: space-between;
+}
+
+.top-head__title{
+  margin: 0.5rem;
+}
+
+.top-head__drop-ham{
+  display: none;
+  margin: 0.5rem;
+  width: 2rem;
+}
+
+.top-head__main{
+  display: flex;
+  justify-content: space-between;
+  flex-grow: 1;
+}
+
+.top-nav__list{
+  list-style: none;
+  display: flex;
+  padding: 0;
+  margin: 0;
+  height: 100%;
+}
+
+.top-nav__item{
+  height: 100%;
+  padding: 0 0.5rem;
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  position: relative;
+}
+
+.top-nav__item:hover{
+  background-color: lightgrey;
+}
+
+.top-nav__drop-button{
+  display: none;
+}
+
+.top-auth{
+  list-style: none;
+  height: 100%;
+  display: flex;
+  margin: 0;
+  padding: 0;
+}
+
+.top-auth__item{
+  padding: 0 0.5rem;
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.top-auth__link{
+  border: 1px solid black;
+  border-radius: 0.25rem;
+  padding: 0.25rem;
+}
+
+.drop-nav{
+  display: none;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  z-index: 1;
+  background-color: white;
+  border: 1px solid grey;
+  width: 8rem;
+}
+
+.top-nav__item:hover > .drop-nav{
+  display: block;
+}
+
+.drop-nav__item{
+  padding: 1rem;
+}
+
+.drop-nav__item--only-narrow{
+  display: none;
+}
+
+.drop-nav__item:hover{
+  background-color: lightgrey;
+}
+
+@media (max-width: 750px){
+  .top-head__wrap{
+    flex-basis: 100%;
+  }
+
+  .top-head__drop-ham{
+    display: block;
+  }
+
+  .top-head__main{
+    display: none;
+  }
+
+  .top-head__main--show{
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: center;
+  }
+
+  .top-nav{
+    width: 100%;
+  }
+
+  .top-nav__list{
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .top-nav__item{
+    padding: 1rem;
+    border-top: 1px solid grey;
+    width: 90%;  
+  }
+
+  .top-nav__link{
+    display: none;
+  }
+
+  .top-nav__drop-button{
+    display: block;
+  }
+
+  .top-auth{
+    margin-bottom: 1rem;
+  }
+
+  .drop-nav{
+    position: static;
+    width: 100%;
+    border: none;
+    margin: 0.5rem;
+  }
+
+  .top-nav__item:hover > .drop-nav{
+    display: none;
+  }
+
+  .drop-nav--show{
+    display: block;
+  }
+
+  .top-nav__item:hover > .drop-nav--show{
+    display: block;
+  }
+
+  .drop-nav__item--only-narrow{
+    display: block;
+  }
+}
+
+.content{
+  padding: 0 0.5rem;
+  height: 50rem;
+}

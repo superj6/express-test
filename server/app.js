@@ -7,8 +7,8 @@ const flash = require('connect-flash');
 const http = require('http');
 require('dotenv').config();
 
-const routes = require('./routes/route');
-const api = require('./apis/api');
+const routes = require('./routes');
+const api = require('./apis');
 const socketServer = require('./socket-server');
 
 const port = process.env.PORT || 8080;
