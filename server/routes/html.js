@@ -24,5 +24,9 @@ router.get('/responsive-nav', function(req, res){
   res.sendFile(path.join(viewPath, 'responsive-nav.html'));
 });
 
+router.get('/svg-fun', (req, res) => {
+  res.sendFile(path.join(viewPath, 'svg-fun.html'));
+});
+
 module.exports = router;
 
