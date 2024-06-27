@@ -7,3 +7,4 @@ includes:
 - dynamic pages
 - websockets
 - sqlite
+- custom svgs
