@@ -8,3 +8,5 @@ includes:
 - websockets
 - sqlite
 - custom svgs
+
+<img src="https://jgon.net/static/images/express-test-screenshot.png" height="500px">
